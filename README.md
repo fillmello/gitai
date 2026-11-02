@@ -1,5 +1,7 @@
 # gitai 
 
+[logo](/logo.jpg)
+
 
 ## 1. Resumo
 
