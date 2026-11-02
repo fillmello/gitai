@@ -1,7 +1,5 @@
 # gitai 
 
-> Nome de trabalho: **gitai** (pode mudar). Rodando como subcomando do Git: `git ai ...`.
-> Status: rascunho de design, antes da primeira linha de código.
 
 ## 1. Resumo
 
@@ -68,7 +66,7 @@ Para não depender de um único provedor gratuito de LLM, a ferramenta inclui um
                           │ fallback,    │      │ (comentários   │
                           │ cooldown     │      │  em commits)   │
                           └──────┬───────┘      └────────────────┘
-                   Gemini · Groq · OpenRouter · Ollama (local)
+                                          Gemini 
 ```
 
 ### Estrutura de pastas
