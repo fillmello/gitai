@@ -19,12 +19,6 @@ def run_git(*args: str, cwd: Path | None = None, check: bool = True) -> str:
     return result.stdout
 
 
-def git_version() -> str:
-    raw = run_git("--version")
-    match = re.search(r"\d+\.\d+(\.\d+)?", raw)
-    return match.group(0) if match else "desconhecida"
-
-
 def get_diff(cwd: Path | None = None) -> str:
     return run_git("diff", "HEAD", cwd=cwd)
 

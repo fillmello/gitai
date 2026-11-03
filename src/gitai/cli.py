@@ -9,7 +9,6 @@ app = typer.Typer(help="Available Commands")
 @app.command()
 def version():
     typer.echo(f"gitai [v{pkg_version('gitai')}]")
-    typer.echo(f"git   [v{gitops.git_version()}]")
 
 
 @app.command()
