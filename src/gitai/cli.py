@@ -1,4 +1,5 @@
 import typer
+from importlib.metadata import version as pkg_version
 
 from gitai.core import gitops
 
@@ -7,7 +8,8 @@ app = typer.Typer(help="Available Commands")
 
 @app.command()
 def version():
-    print(gitops.git_version())
+    typer.echo(f"gitai [v{pkg_version('gitai')}]")
+    typer.echo(f"git   [v{gitops.git_version()}]")
 
 
 @app.command()
@@ -30,4 +32,3 @@ def plan():
 @app.command()
 def commit(dry_run: bool = False, yes: bool = False):
     typer.echo(f"commit: ainda não implementado (dry_run={dry_run}, yes={yes})")
-
