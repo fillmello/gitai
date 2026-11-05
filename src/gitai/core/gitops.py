@@ -26,3 +26,24 @@ def get_diff(cwd: Path | None = None) -> str:
 def changed_files(cwd: Path | None = None) -> list[str]:
     out = run_git("status", "--porcelain", "--untracked-files=all", cwd=cwd)
     return [line[3:] for line in out.splitlines()]
+
+def file_changes(cwd: Path | None = None) -> list[tuple[str, str]]:
+    """Devolve (tipo, caminho) de cada mudança.
+
+    Tipos: 'added', 'modified', 'deleted', 'renamed'.
+    """
+    out = run_git("status", "--porcelain", "--untracked-files=all", cwd=cwd)
+    changes = []
+    for line in out.splitlines():
+        code, path = line[:2], line[3:]      # "XY caminho": 2 letras de status + espaço
+        if "R" in code:
+            kind = "renamed"
+            path = path.split(" -> ")[-1]    # "antigo -> novo": fica o novo
+        elif code == "??" or "A" in code:
+            kind = "added"
+        elif "D" in code:
+            kind = "deleted"
+        else:
+            kind = "modified"
+        changes.append((kind, path))
+    return changes
